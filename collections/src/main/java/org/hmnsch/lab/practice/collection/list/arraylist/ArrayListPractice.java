@@ -141,7 +141,23 @@ public class ArrayListPractice {
         // comparingInt is optimized for comparing primitive integer values
 //        Comparator<Employee> comparator = Comparator.comparing(Employee::getYoj).thenComparing(Comparator.comparing(Employee::getName).reversed());
 //        employees.sort(comparator);
-        System.out.println(employees);
+//        System.out.println(employees);
+
+
+        ArrayList<Integer> integerArrayList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        for (Integer i : integerArrayList) {
+            System.out.println(i);
+            if (i == 3) {
+                /*
+                * Exception in thread "main" java.util.ConcurrentModificationException
+	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1013)
+	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:967)
+	at org.hmnsch.lab.practice.collection.list.arraylist.ArrayListPractice.main(ArrayListPractice.java:148)
+                * */
+                // modification while iterating is not possible
+                integerArrayList.add(2, 25);
+            }
+        }
 
     }
 }

@@ -1,0 +1,1 @@
+Write a custom exception class InvalidAgeException that extends Exception. Then, write a method validateAge(int age) that throws this exception if the age is below 18. Provide an example of how this exception is thrown and handled in a main method.

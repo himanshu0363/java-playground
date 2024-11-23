@@ -2,10 +2,12 @@ package org.hmnsch.lab.practice.collection.list.vector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 public class VectorPractice {
     public static void main(String[] args) {
+        List<Integer> vectorList = new Vector<>();
         Vector<Integer> vector = new Vector<>();
         Vector<Integer> vector1 = new Vector<>(5);
         Vector<Integer> vector2 = new Vector<>(5, 5);
