@@ -18,5 +18,65 @@ public class ArrayBlockingQueuePractice {
         // problem with more threads, wait can increase
         ArrayBlockingQueue<Integer> integers = new ArrayBlockingQueue<Integer>(5);
 
+        Producer producer = new Producer(integers);
+        Thread thread = new Thread(producer);
+
+        Consumer consumer = new Consumer(integers);
+        Thread thread1 = new Thread(consumer);
+
+        thread.start();
+        thread1.start();
+
+    }
+}
+
+class Producer implements Runnable {
+
+    ArrayBlockingQueue<Integer> arrayBlockingQueue;
+
+    public Producer(ArrayBlockingQueue<Integer> arrayBlockingQueue) {
+        this.arrayBlockingQueue = arrayBlockingQueue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i < 10; i++) {
+            try {
+                // this will put the elements in the blocking queue if there is a space
+                // otherwise will wait if it is full
+                arrayBlockingQueue.put(i);
+                System.out.println("produced - " + i);
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+}
+
+
+class Consumer implements Runnable {
+
+    ArrayBlockingQueue<Integer> arrayBlockingQueue;
+
+    public Consumer(ArrayBlockingQueue<Integer> arrayBlockingQueue) {
+        this.arrayBlockingQueue = arrayBlockingQueue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i < 10; i++) {
+            try {
+                // this will take the elements from the blocking queue if there are elements
+                // otherwise will wait if it is empty
+                arrayBlockingQueue.take();
+                System.out.println("consumed - " + i);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }
